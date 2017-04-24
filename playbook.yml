@@ -1,0 +1,27 @@
+---
+- hosts: all
+  user: ubuntu
+  become: yes
+  become_user: root
+
+  gather_facts: false
+
+  tasks:
+    - raw: sudo bash -c "test -e /usr/bin/python || (apt -qqy update && apt install -qy python-minimal)"
+
+- hosts: all
+  user: ubuntu
+  become: yes
+  become_user: root
+
+  gather_facts: false
+
+  roles:
+    - role: docker
+    - role: docker-py
+    - role: rancher
+      rancher_container_name: "rancher"
+      rancher_port: 80
+    - role: rancher_agent
+      rancher_server: "localhost"
+      rancher_port: 80
