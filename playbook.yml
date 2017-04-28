@@ -21,7 +21,7 @@
     - role: docker-py
     - role: rancher
       rancher_container_name: "rancher"
-      rancher_port: 80
+      rancher_port: 8000
     - role: rancher_agent
       rancher_server: "localhost"
-      rancher_port: 80
+      rancher_port: 8000
